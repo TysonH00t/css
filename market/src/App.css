@@ -1,0 +1,13 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.background {
+    background: grey;
+    height: 100%;
+    padding: 25px;
+}
