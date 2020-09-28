@@ -210,7 +210,7 @@ export class MarketHolder extends React.Component {
           <p>
             Change: <strong>
               <span style={{color: (this.state.currentStockPrice - this.state.previousStockPrice) < 0 ? 'red' : 'green'}}>
-                {(this.state.currentStockPrice - this.state.previousStockPrice) < 0 ? '-' : '+'} {Math.abs(this.state.currentStockPrice - this.state.previousStockPrice)}
+                {(this.state.currentStockPrice - this.state.previousStockPrice) < 0 ? '-' : '+'} {Math.abs(Math.round((this.state.currentStockPrice - this.state.previousStockPrice) * 100 + Number.EPSILON ) / 100)}
               </span>
               </strong>
           </p>
