@@ -19,8 +19,9 @@ export class MarketHolder extends React.Component {
       startPriceTracking: false,
       previousStockPrice: '',
       notes: [false, false, false, false, false, false, false, false],
-      apiCallInterval: 5,
+      apiCallInterval: 60,
       notePercentRange: 100,
+      soundVolume: 50
     };
   }
 
@@ -82,10 +83,6 @@ export class MarketHolder extends React.Component {
         this.callSound();
       }
     });
-    // let randomNum = Math.random() * 5;
-    // this.setState({ previousStockPrice: this.state.currentStockPrice });
-    // this.setState({ currentStockPrice: randomNum });
-    // this.callSound();
   };
 
   priceTrackingCycle = () => {
@@ -114,6 +111,10 @@ export class MarketHolder extends React.Component {
 
   onNotePercentChange = (event) => {
     this.setState({ notePercentRange: event.target.value });
+  };
+
+  onSoundVolumeChange = (event) => {
+    this.setState({ soundVolume: event.target.value });
   };
 
   onApiKeyEntered = () => {
@@ -152,13 +153,13 @@ export class MarketHolder extends React.Component {
           />
         </label>
         <label>
-          Refresh Interval({this.state.apiCallInterval} seconds)-
+          Refresh Interval({this.state.apiCallInterval} seconds) - seems to only refresh from API every 60 seconds
           <input
             value={this.state.apiCallInterval}
             onChange={this.onApiIntervalChange}
             type='range'
             min='5'
-            max='60'
+            max='120'
             step='1'
           />
         </label>
@@ -170,6 +171,17 @@ export class MarketHolder extends React.Component {
             type='range'
             min='1'
             max='200'
+            step='1'
+          />
+        </label>
+        <label>
+          Tone Volume ({this.state.soundVolume} percent)-
+          <input
+            value={this.state.soundVolume}
+            onChange={this.onSoundVolumeChange}
+            type='range'
+            min='0'
+            max='100'
             step='1'
           />
         </label>
@@ -214,6 +226,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -226,6 +239,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -238,6 +252,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -250,6 +265,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -262,6 +278,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -274,6 +291,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -286,6 +304,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
@@ -298,6 +317,7 @@ export class MarketHolder extends React.Component {
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
+            volume={this.state.soundVolume}
           />
         ) : (
           ''
