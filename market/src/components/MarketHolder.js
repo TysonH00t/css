@@ -57,7 +57,7 @@ export class MarketHolder extends React.Component {
       startPriceTracking: false,
       previousStockPrice: '',
       notes: [false, false, false, false, false, false, false, false],
-      apiCallInterval: 60,
+      apiCallInterval: 2,
       notePercentRange: 100,
       soundVolume: 50
     };
