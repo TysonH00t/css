@@ -1,3 +1,41 @@
+// import React from "react";
+
+// export class MarketHolder extends React.Component {
+//   constructor() {
+//     super();
+//     this.state = {
+
+//     };
+//     const socket = new WebSocket('wss://ws.finnhub.io?token=');
+
+//     socket.addEventListener('open', function (event) {
+//       socket.send(JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'}));
+//   });
+
+//   socket.addEventListener('message', function (event) {
+//     console.log('Message from server ', JSON.parse(event.data).data[0].p);
+// });
+
+//     // apiCall = () => {
+
+//     // }
+//   }
+
+
+//   render() {
+//     return (
+//       <div>
+//         <h1>
+//           Begin by creating an API key here:{' '}
+//           <a href='https://finnhub.io/'>Finnhub.io</a> and entering it within
+//           the field below
+//         </h1>
+//       </div>
+//     );
+//   }
+// }
+
+
 import React from "react";
 import soundFile0 from "./assets/audio/0.mp3";
 import soundFile1 from "./assets/audio/1.mp3";
@@ -62,6 +100,28 @@ export class MarketHolder extends React.Component {
   };
 
   callStockAPI = () => {
+    // this.setState({ notes: [false, false, false, false, false, false, false, false] });
+    // const finnhub = require('finnhub');
+    // const api_key = finnhub.ApiClient.instance.authentications['api_key'];
+    // api_key.apiKey = this.state.apiKey; // Replace this
+    // const finnhubClient = new finnhub.DefaultApi();
+
+    // //Quote
+    // finnhubClient.quote(this.state.currentStock, (error, data, response) => {
+    //   if (error || data.c === undefined) {
+    //     console.log(
+    //       'Something went wrong. Please check your API key and ticker symbol'
+    //     );
+    //     this.setState({ startPriceTracking: false });
+    //   } else {
+    //     console.log(data);
+    //     console.log(data.c);
+    //     this.setState({ previousStockPrice: this.state.currentStockPrice });
+    //     this.setState({ currentStockPrice: data.c });
+    //     this.callSound();
+    //   }
+    // });
+
         const socket = new WebSocket('wss://ws.finnhub.io?token=' + this.state.apiKey);
         const externalThis = this;
         socket.addEventListener('open', function (event) {
@@ -72,13 +132,22 @@ export class MarketHolder extends React.Component {
           if (JSON.parse(event.data) !== undefined && JSON.parse(event.data).data !== undefined) {
             externalThis.setState({previousStockPrice: externalThis.state.currentStockPrice})
             externalThis.setState({currentStockPrice: JSON.parse(event.data).data[0].p})
+            externalThis.callSound();
           }
         });
   };
 
   priceTrackingCycle = () => {
+    // let externalThis = this;
+    // let intervalPrice = () => {
+    //   if (externalThis.state.startPriceTracking === true) {
+    //     externalThis.callStockAPI();
+    //   } else {
+    //     clearInterval(intervalPrice);
+    //   }
+    // };
     this.callStockAPI();
-    setInterval(this.callSound, 1000 * this.state.apiCallInterval);
+    // setInterval(this.callSound, 1000 * this.state.apiCallInterval);
   };
 
   onApiKeyChange = (event) => {
